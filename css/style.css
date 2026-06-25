@@ -1162,4 +1162,8 @@ section{
 footer{
     background:#111;
     padding:30px;
+}.logo{
+    width:220px;
+    display:block;
+    margin:20px auto;
 }
