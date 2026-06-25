@@ -96,3 +96,44 @@ footer{
     color:white;
     padding:30px;
 }
+.promocao{
+    background:rgba(255,255,255,0.9);
+    max-width:500px;
+    margin:40px auto;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.promocao h2{
+    color:#d4a373;
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.promocao p{
+    font-size:20px;
+    color:#333;
+    margin:10px 0;
+}
+
+.promocao .detalhe{
+    font-style:italic;
+    color:#555;
+}
+
+.promocao .botao{
+    display:inline-block;
+    margin-top:20px;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:50px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.promocao .botao:hover{
+    transform:scale(1.05);
+}
