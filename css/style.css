@@ -16,21 +16,21 @@ body{
 header{
     background:linear-gradient(135deg,#000,#3a2a1f);
     color:white;
-    padding:60px 20px;
+    padding:120px 20px 80px; /* AUMENTEI O ESPAÇO DO TOPO */
 }
 
-/* LOGO — TAMANHO MÁXIMO */
+/* LOGO — TAMANHO MÁXIMO REAL */
 .logo{
-    width:600px;      /* LOGO ENORME */
+    width:600px;
     height:auto;
     display:block;
-    margin:0 auto 20px;
+    margin:0 auto 40px; /* MAIS ESPAÇO EMBAIXO */
 }
 
 /* Títulos */
 h1{
     color:#d4a373;
-    font-size:55px;
+    font-size:65px; /* aumentei para combinar com o logo */
 }
 
 h2{
