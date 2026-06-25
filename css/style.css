@@ -7,7 +7,7 @@
 
 /* FUNDO DO SITE */
 body{
-    background: url("imagens/fundo-abstrato.jpg") no-repeat center center fixed;
+    background: url("imagens/fundo-promocao.jpg") no-repeat center center fixed;
     background-size: cover;
     color:#333;
     text-align:center;
@@ -23,7 +23,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.3); /* ajuste aqui a opacidade */
+    background: rgba(0,0,0,0.25); /* ajuste aqui a opacidade */
     z-index: -1;
 }
 
@@ -42,7 +42,7 @@ header{
     margin:0 auto 40px;
 }
 
-/* Títulos */
+/* TÍTULOS */
 h1{
     color:#d4a373;
     font-size:65px;
@@ -53,12 +53,12 @@ h2{
     margin-bottom:20px;
 }
 
-/* Seções */
+/* SEÇÕES */
 section{
     padding:60px 20px;
 }
 
-/* Cards de produtos */
+/* CARDS DE PRODUTOS */
 .produto{
     background:white;
     max-width:350px;
@@ -73,7 +73,7 @@ section{
     transform:translateY(-8px);
 }
 
-/* Botão WhatsApp */
+/* BOTÃO WHATSAPP */
 .botao{
     display:inline-block;
     margin-top:20px;
@@ -90,38 +90,9 @@ section{
     transform:scale(1.05);
 }
 
-/* Rodapé */
+/* RODAPÉ */
 footer{
     background:#111;
     color:white;
     padding:30px;
-}
-body{
-    background: url("imagens/fundo-promocao.jpg") no-repeat center center fixed;
-    background-size: cover;
-    color:#333;
-    text-align:center;
-    position: relative;
-    z-index: 0;
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.25);
-    z-index: -1;
-
-    body{
-    background: url("imagens/fundo-promocao.jpg") no-repeat center center fixed;
-    background-size: cover;
-    color:#333;
-    text-align:center;
-    position: relative;
-    z-index: 0;
-}
-
 }
