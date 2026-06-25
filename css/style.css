@@ -81,3 +81,9 @@ footer{
     color:white;
     padding:30px;
 }
+body{
+    background: url("imagens/fundo-abstrato.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color:#333;
+    text-align:center;
+}
