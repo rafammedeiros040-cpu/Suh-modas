@@ -22,6 +22,8 @@
       <label>Nome: <input type="text" id="nome" required></label><br>
       <label>CEP: <input type="text" id="cep" required></label><br>
       <label>Endereço: <input type="text" id="endereco" required></label><br>
+      <label>Bairro: <input type="text" id="bairro" required></label><br>
+      <label>Cidade: <input type="text" id="cidade" required></label><br>
       <label>Forma de pagamento:
         <select id="pagamento">
           <option>Pix</option>
@@ -35,10 +37,12 @@
 
   <footer>
     <p>WhatsApp: (11) 97610-9159</p>
+    <p>© 2026 SUH Modas • Rafael Marques Medeiros</p>
   </footer>
 
   <script src="js/cart.js"></script>
   <script>
+    // Renderizar resumo do pedido
     function renderCheckout() {
       const items = getCartItems();
       const container = document.getElementById('checkout-items');
@@ -64,6 +68,27 @@
 
     document.addEventListener('DOMContentLoaded', renderCheckout);
 
+    // Buscar endereço pelo CEP (ViaCEP)
+    document.getElementById('cep').addEventListener('blur', async function() {
+      const cep = this.value.replace(/\D/g, '');
+      if (cep.length === 8) {
+        try {
+          const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+          const data = await response.json();
+          if (!data.erro) {
+            document.getElementById('endereco').value = data.logradouro || '';
+            document.getElementById('bairro').value = data.bairro || '';
+            document.getElementById('cidade').value = data.localidade || '';
+          } else {
+            alert("CEP não encontrado.");
+          }
+        } catch (e) {
+          alert("Erro ao buscar CEP.");
+        }
+      }
+    });
+
+    // Confirmar pedido
     document.getElementById('checkout-form').addEventListener('submit', e => {
       e.preventDefault();
       alert("Pedido confirmado! Entraremos em contato pelo WhatsApp.");
