@@ -1,55 +1,34 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Carrinho - SUH Modas</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-  <header>
-    <img src="imagens/logo.png" alt="Logo SUH Modas" class="logo" />
-    <h1>Carrinho</h1>
-    <a class="botao" href="index.html">Voltar ao catálogo</a>
-  </header>
+// js/cart.js
+const CART_KEY = 'suh_cart_v1';
 
-  <main class="catalogo">
-    <div id="cart-container" class="grid"></div>
-    <div style="text-align:right;">
-      <p><strong>Total:</strong> R$ <span id="cart-total">0.00</span></p>
-      <a id="checkout-btn" class="botao" href="checkout.html">Finalizar compra</a>
-      <button id="clear-cart" class="botao" style="background:#c0392b;">Limpar carrinho</button>
-    </div>
-  </main>
+function loadCart() {
+  try { return JSON.parse(localStorage.getItem(CART_KEY) || '{}'); }
+  catch (e) { return {}; }
+}
 
-  <footer><p>WhatsApp: (11) 97610-9159</p></footer>
+function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
 
-  <script src="js/cart.js"></script>
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const items = getCartItems();
-    const container = document.getElementById('cart-container');
-    container.innerHTML = '';
-    let total = 0;
+function addToCart(item) {
+  const cart = loadCart();
+  const key = item.id + (item.size ? '-' + item.size : '');
+  if (cart[key]) cart[key].qty += item.qty || 1;
+  else cart[key] = { id: key, baseId: item.id, name: item.name, price: Number(item.price), size: item.size || '', qty: item.qty || 1 };
+  saveCart(cart);
+}
 
-    if (items.length === 0) {
-      container.innerHTML = '<p>Seu carrinho está vazio.</p>';
-    } else {
-      items.forEach(it => {
-        const div = document.createElement('div');
-        div.textContent = `${it.name} - Tamanho: ${it.size || '-'} - Qtd: ${it.qty} - R$ ${(it.price * it.qty).toFixed(2)}`;
-        container.appendChild(div);
-        total += it.price * it.qty;
-      });
-    }
+function removeFromCart(key) {
+  const cart = loadCart();
+  delete cart[key];
+  saveCart(cart);
+}
 
-    document.getElementById('cart-total').textContent = total.toFixed(2);
+function clearCart() {
+  localStorage.removeItem(CART_KEY);
+}
 
-    document.getElementById('clear-cart').addEventListener('click', () => {
-      clearCart();
-      location.reload();
-    });
-  });
-  </script>
-</body>
-</html>
+function getCartItems() {
+  const cart = loadCart();
+  return Object.values(cart);
+}
