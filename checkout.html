@@ -5,100 +5,42 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Checkout - SUH Modas</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="imagens/favicon.png" />
 </head>
 <body>
   <header>
     <h1>Finalizar Compra</h1>
     <a class="botao" href="cart.html">Voltar ao carrinho</a>
   </header>
-<main>
-  <h2>Resumo do Pedido</h2>
-  <div id="checkout-items" class="confirmacao"></div>
-  <p><strong>Total:</strong> R$ <span id="checkout-total">0.00</span></p>
+
+  <main>
+    <h2>Resumo do Pedido</h2>
+    <div id="checkout-items"></div>
+    <p><strong>Total:</strong> R$ <span id="checkout-total">0.00</span></p>
 
   <h2>Dados do Cliente</h2>
-  <form id="checkout-form">
-    <label>Nome: <input type="text" id="nome" required></label><br>
-    <label>CEP: <input type="text" id="cep" required></label><br>
-    <label>Endereço: <input type="text" id="endereco" required></label><br>
-    <label>Número: <input type="text" id="numero" required></label><br>
-    <label>Bairro: <input type="text" id="bairro" required></label><br>
-    <label>Cidade: <input type="text" id="cidade" required></label><br>
-    <button type="submit" class="botao">Confirmar Pedido</button>
-  </form>
+    <form id="checkout-form">
+      <label>Nome: <input type="text" id="nome" required></label><br>
+      <label>CEP: <input type="text" id="cep" required></label><br>
+      <label>Endereço: <input type="text" id="endereco" required></label><br>
+      <label>Número: <input type="text" id="numero" required></label><br>
+      <label>Bairro: <input type="text" id="bairro" required></label><br>
+      <label>Cidade: <input type="text" id="cidade" required></label><br>
+      <button type="submit" class="botao">Confirmar Pedido</button>
+    </form>
 
     <!-- Pagamento Pix -->
   <div id="pix-info" style="display:none; margin-top:20px;">
-    <h3 style="color:#eee;">Pagamento via Pix</h3>
-    <p style="color:#ccc;">Chave Pix:</p>
-    <code style="color:#eee;">
-      00020126580014BR.GOV.BCB.PIX0136898229e5-b916-4612-83c3-a5a45de9a4895204000053039865802BR5922Suely Marques dos Reis6009SAO PAULO62140510lBRAnYTDmc630424EB
-    </code>
-    <p style="color:#ccc;">Escaneie o QR Code abaixo para pagar:</p>
-    <img src="imagens/QR code pix.png" alt="QR Code Pix" />
-    <p style="color:#ccc;">Após o pagamento, envie o comprovante para nosso WhatsApp: (11) 97610-9159</p>
-  </div>
-
-  <script src="js/cart.js"></script>
-  <script>
-    function renderCheckout() {
-      const items = getCartItems();
-      const container = document.getElementById('checkout-items');
-      container.innerHTML = '';
-      let total = 0;
-
-      if (items.length === 0) {
-        container.textContent = "Seu carrinho está vazio.";
-        document.getElementById('checkout-total').textContent = "0.00";
-        return;
-      }
-
-      items.forEach(it => {
-        const div = document.createElement('div');
-        div.className = 'checkout-item';
-        div.innerHTML = `
-          <img src="${it.image}" alt="${it.name}" style="width:100px; height:auto;" />
-          <p style="color:#ddd;">${it.name} ${it.size ? '('+it.size+')' : ''} - R$${it.price} x ${it.qty}</p>
-        `;
-        container.appendChild(div);
-        total += it.price * it.qty;
-      });
-
-      document.getElementById('checkout-total').textContent = total.toFixed(2);
-    }
-
-    document.addEventListener('DOMContentLoaded', renderCheckout);
-
-    document.getElementById('cep').addEventListener('blur', async function() {
-      const cep = this.value.replace(/\D/g, '');
-      if (cep.length === 8) {
-        try {
-          const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-          const data = await response.json();
-          if (!data.erro) {
-            document.getElementById('endereco').value = data.logradouro || '';
-            document.getElementById('bairro').value = data.bairro || '';
-            document.getElementById('cidade').value = data.localidade || '';
-          } else {
-            alert("CEP não encontrado.");
-          }
-        } catch (e) {
-          alert("Erro ao buscar CEP.");
-        }
-      }
-    });
-
-    document.getElementById('checkout-form').addEventListener('submit', e => {
-      e.preventDefault();
-      document.getElementById('pix-info').style.display = 'block';
-      alert("Pedido confirmado! Faça o pagamento via Pix e envie o comprovante pelo WhatsApp.");
-      clearCart();
-    });
-  </script>
-</body>
-</html>
-
-
+      <h3 style="color:#eee;">Pagamento via Pix</h3>
+      <p style="color:#ccc;">Chave Pix:</p>
+      <code style="color:#eee;">
+        00020126580014BR.GOV.BCB.PIX0136898229e5-b916-4612-83c3-a5a45de9a4895204000053039865802BR5922Suely Marques dos Reis6009SAO PAULO62140510lBRAnYTDmc630424EB
+      </code>
+      <p style="color:#ccc;">Escaneie o QR Code abaixo para pagar:</p>
+      <img src="imagens/QR code pix.png" alt="QR Code Pix" />
+      <p style="color:#ccc;">Após o pagamento, envie o comprovante para nosso WhatsApp: (11) 97610-9159</p>
+    </div>
+  </main>
 
   <footer>
     <p>WhatsApp: (11) 97610-9159</p>
@@ -107,7 +49,6 @@
 
   <script src="js/cart.js"></script>
   <script>
-    // Renderizar resumo do pedido
     function renderCheckout() {
       const items = getCartItems();
       const container = document.getElementById('checkout-items');
@@ -118,45 +59,24 @@ if (items.length === 0) {
         document.getElementById('checkout-total').textContent = "0.00";
         return;
       }
- items.forEach(it => {
+items.forEach(it => {
         const div = document.createElement('div');
         div.className = 'checkout-item';
-        div.innerHTML = `${it.name} ${it.size ? '('+it.size+')' : ''} - R$${it.price} x ${it.qty}`;
+        div.innerHTML = `
+          <img src="${it.image}" alt="${it.name}" style="width:120px; height:auto; margin-right:10px;" />
+          <p style="color:#ddd; font-size:16px;">
+            ${it.name} ${it.size ? '('+it.size+')' : ''} - R$${it.price} x ${it.qty}
+          </p>
+        `;
         container.appendChild(div);
         total += it.price * it.qty;
       });
-
-      document.getElementById('checkout-total').textContent = total.toFixed(2);
+document.getElementById('checkout-total').textContent = total.toFixed(2);
     }
-
-    document.addEventListener('DOMContentLoaded', renderCheckout);
-
-    // Buscar endereço pelo CEP (ViaCEP)
-    document.getElementById('cep').addEventListener('blur', async function() {
+document.addEventListener('DOMContentLoaded', renderCheckout);
+document.getElementById('cep').addEventListener('blur', async function() {
       const cep = this.value.replace(/\D/g, '');
       if (cep.length === 8) {
         try {
           const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-          const data = await response.json();
-          if (!data.erro) {
-            document.getElementById('endereco').value = data.logradouro || '';
-            document.getElementById('bairro').value = data.bairro || '';
-            document.getElementById('cidade').value = data.localidade || '';
-            } else {
-            alert("CEP não encontrado.");
-          }
-        } catch (e) { alert("Erro ao buscar CEP.");
-        }
-      }
-    });
-
-    // Confirmar pedido e mostrar Pix
-    document.getElementById('checkout-form').addEventListener('submit', e => {
-      e.preventDefault();
-      document.getElementById('pix-info').style.display = 'block';
-      alert("Pedido confirmado! Faça o pagamento via Pix e envie o comprovante pelo WhatsApp.");
-      clearCart();
-    });
-  </script>
-</body>
-</html>
+          const data
