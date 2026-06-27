@@ -74,7 +74,14 @@
         <button class="add-cart botao">Adicionar ao carrinho</button>
       </div>
 
-      <!-- Adicione aqui todas as outras camisas que você tem fotos -->
+      <!-- Produto 7 (exemplo extra) -->
+      <div class="produto" data-id="coroa-dourada" data-name="Coroa dourada" data-price="35">
+        <img src="imagens/coroa-dourada.jpeg" alt="Coroa dourada" />
+        <h3>Coroa dourada</h3>
+        <p class="preco">R$35</p>
+        <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
+        <button class="add-cart botao">Adicionar ao carrinho</button>
+      </div>
     </div>
   </section>
 
@@ -94,3 +101,24 @@
   <script src="js/ui.js"></script>
 </body>
 </html>
+<label for="cep">CEP:</label>
+<input type="text" id="cep" maxlength="9" placeholder="00000-000" />
+<button id="buscar-cep">Buscar endereço</button>
+
+<div id="endereco"></div>
+
+<script>
+document.getElementById('buscar-cep').addEventListener('click', () => {
+  const cep = document.getElementById('cep').value.replace(/\D/g, '');
+  fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.erro) {
+        document.getElementById('endereco').textContent = "CEP não encontrado.";
+      } else {
+        document.getElementById('endereco').textContent =
+          `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
+      }
+    });
+});
+</script>
