@@ -3,86 +3,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SUH Modas</title>
+  <title>Checkout - SUH Modas</title>
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" type="image/png" href="imagens/favicon.png" />
 </head>
 <body>
   <header>
-    <img src="imagens/logo.png" alt="Logo SUH Modas" class="logo" />
-    <h1>SUH MODAS</h1>
-    <p>Moda Feminina • Estilo • Elegância</p>
-    <a class="botao" href="cart.html" id="cart-link">Carrinho (<span id="cart-badge">0</span>)</a>
-    <a class="botao" href="https://wa.me/5511976109159" target="_blank" rel="noopener">Faça seu pedido no WhatsApp</a>
+    <h1>Finalizar Compra</h1>
+    <a class="botao" href="cart.html">Voltar ao carrinho</a>
   </header>
 
-  <section class="catalogo">
-    <h2>Catálogo de Camisas</h2>
-    <div class="grid">
-      <!-- Produtos já existentes -->
-      <div class="produto" data-id="abencoada-amarela" data-name="Abençoada amarela" data-price="35">
-        <img src="imagens/abencoada-amarela.jpeg" alt="Abençoada amarela"
-             onerror="this.src='imagens/placeholder.png'; this.classList.add('img-missing');" />
-        <h3>Abençoada amarela</h3>
-        <p class="preco">R$35</p>
-        <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
-        <button class="add-cart botao">Adicionar ao carrinho</button>
-      </div>
+  <main>
+    <h2>Resumo do Pedido</h2>
+    <div id="checkout-items"></div>
+    <p><strong>Total:</strong> R$ <span id="checkout-total">0.00</span></p>
 
-      <div class="produto" data-id="em-tudo-dai-gracas" data-name="Em tudo dai graças" data-price="35">
-        <img src="imagens/em-tudo-dai-gracas.jpeg" alt="Em tudo dai graças"
-             onerror="this.src='imagens/placeholder.png'; this.classList.add('img-missing');" />
-        <h3>Em tudo dai graças</h3>
-        <p class="preco">R$35</p>
-        <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
-        <button class="add-cart botao">Adicionar ao carrinho</button>
-      </div>
+    <h2>Dados do Cliente</h2>
+    <form id="checkout-form">
+      <label>Nome: <input type="text" id="nome" required></label><br>
+      <label>CEP: <input type="text" id="cep" required></label><br>
+      <label>Endereço: <input type="text" id="endereco" required></label><br>
+      <label>Número: <input type="text" id="numero" required></label><br>
+      <label>Bairro: <input type="text" id="bairro" required></label><br>
+      <label>Cidade: <input type="text" id="cidade" required></label><br>
+      <button type="submit" class="botao">Confirmar Pedido</button>
+    </form>
 
-      <!-- Novos produtos -->
-      <div class="produto" data-id="gratidao" data-name="Gratidão" data-price="35">
-        <img src="imagens/gratidao.jpeg" alt="Gratidão"
-             onerror="this.src='imagens/placeholder.png'; this.classList.add('img-missing');" />
-        <h3>Gratidão</h3>
-        <p class="preco">R$35</p>
-        <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
-        <button class="add-cart botao">Adicionar ao carrinho</button>
-      </div>
-
-      <div class="produto" data-id="libelula-preta" data-name="Libélula preta" data-price="35">
-        <img src="imagens/libelula-preta.jpeg" alt="Libélula preta"
-             onerror="this.src='imagens/placeholder.png'; this.classList.add('img-missing');" />
-        <h3>Libélula preta</h3>
-        <p class="preco">R$35</p>
-        <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
-        <button class="add-cart botao">Adicionar ao carrinho</button>
-      </div>
-
-      <div class="produto" data-id="nao-temerei-mal-algum" data-name="Não temerei mal algum" data-price="35">
-        <img src="imagens/nao-temerei-mal-algum-porque-estas-comigo.jpeg" alt="Não temerei mal algum"
-             onerror="this.src='imagens/placeholder.png'; this.classList.add('img-missing');" />
-        <h3>Não temerei mal algum</h3>
-        <p class="preco">R$35</p>
-        <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
-        <button class="add-cart botao">Adicionar ao carrinho</button>
-      </div>
-
-      <div class="produto" data-id="protegida-por-deus" data-name="Protegida por Deus" data-price="35">
-        <img src="imagens/protegida-por-deus.jpeg" alt="Protegida por Deus"
-             onerror="this.src='imagens/placeholder.png'; this.classList.add('img-missing');" />
-        <h3>Protegida por Deus</h3>
-        <p class="preco">R$35</p>
-        <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
-        <button class="add-cart botao">Adicionar ao carrinho</button>
-      </div>
+    <!-- Pagamento Pix -->
+    <div id="pix-info" style="display:none; margin-top:20px;">
+      <h3 style="color:#eee;">Pagamento via Pix</h3>
+      <p style="color:#ccc;">Chave Pix:</p>
+      <code style="color:#eee;">
+        00020126580014BR.GOV.BCB.PIX0136898229e5-b916-4612-83c3-a5a45de9a4895204000053039865802BR5922Suely Marques dos Reis6009SAO PAULO62140510lBRAnYTDmc630424EB
+      </code>
+      <p style="color:#ccc;">Escaneie o QR Code abaixo para pagar:</p>
+      <img src="imagens/QR code pix.png" alt="QR Code Pix" />
+      <p style="color:#ccc;">Após o pagamento, envie o comprovante para nosso WhatsApp: (11) 97610-9159</p>
     </div>
-  </section>
-
-  <aside class="promocao">
-    <h2>Promoção Especial</h2>
-    <p>Cada camisa por <strong>R$35</strong></p>
-    <p>Leve 3 por <strong>R$90</strong></p>
-    <p><em>Oferta Limitada</em></p>
-  </aside>
+  </main>
 
   <footer>
     <p>WhatsApp: (11) 97610-9159</p>
@@ -90,6 +47,65 @@
   </footer>
 
   <script src="js/cart.js"></script>
-  <script src="js/ui.js"></script>
+  <script>
+    // Renderizar resumo do pedido com foto e texto claro
+    function renderCheckout() {
+      const items = getCartItems();
+      const container = document.getElementById('checkout-items');
+      container.innerHTML = '';
+      let total = 0;
+
+      if (items.length === 0) {
+        container.textContent = "Seu carrinho está vazio.";
+        document.getElementById('checkout-total').textContent = "0.00";
+        return;
+      }
+
+      items.forEach(it => {
+        const div = document.createElement('div');
+        div.className = 'checkout-item';
+        div.innerHTML = `
+          <img src="${it.image}" alt="${it.name}" style="width:120px; height:auto; margin-right:10px;" />
+          <p style="color:#ddd; font-size:16px;">
+            ${it.name} ${it.size ? '('+it.size+')' : ''} - R$${it.price} x ${it.qty}
+          </p>
+        `;
+        container.appendChild(div);
+        total += it.price * it.qty;
+      });
+
+      document.getElementById('checkout-total').textContent = total.toFixed(2);
+    }
+
+    document.addEventListener('DOMContentLoaded', renderCheckout);
+
+    // Buscar endereço pelo CEP (ViaCEP)
+    document.getElementById('cep').addEventListener('blur', async function() {
+      const cep = this.value.replace(/\D/g, '');
+      if (cep.length === 8) {
+        try {
+          const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+          const data = await response.json();
+          if (!data.erro) {
+            document.getElementById('endereco').value = data.logradouro || '';
+            document.getElementById('bairro').value = data.bairro || '';
+            document.getElementById('cidade').value = data.localidade || '';
+          } else {
+            alert("CEP não encontrado.");
+          }
+        } catch (e) {
+          alert("Erro ao buscar CEP.");
+        }
+      }
+    });
+
+    // Confirmar pedido e mostrar Pix
+    document.getElementById('checkout-form').addEventListener('submit', e => {
+      e.preventDefault();
+      document.getElementById('pix-info').style.display = 'block';
+      alert("Pedido confirmado! Faça o pagamento via Pix e envie o comprovante pelo WhatsApp.");
+      clearCart();
+    });
+  </script>
 </body>
 </html>
