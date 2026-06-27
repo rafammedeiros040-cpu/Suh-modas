@@ -19,7 +19,7 @@
   <section class="catalogo">
     <h2>Catálogo de Camisas</h2>
     <div class="grid">
-      <!-- Exemplo de produto com nome de arquivo "seguro" e fallback -->
+      <!-- Produtos já existentes -->
       <div class="produto" data-id="abencoada-amarela" data-name="Abençoada amarela" data-price="35">
         <img src="imagens/abencoada-amarela.jpeg" alt="Abençoada amarela"
              onerror="this.src='imagens/placeholder.png'; this.classList.add('img-missing');" />
@@ -38,60 +38,42 @@
         <button class="add-cart botao">Adicionar ao carrinho</button>
       </div>
 
-      <div class="produto" data-id="sou-grata" data-name="Sou grata" data-price="35">
-        <img src="imagens/sou-grata.jpeg" alt="Sou grata"
+      <!-- Novos produtos -->
+      <div class="produto" data-id="gratidao" data-name="Gratidão" data-price="35">
+        <img src="imagens/gratidao.jpeg" alt="Gratidão"
              onerror="this.src='imagens/placeholder.png'; this.classList.add('img-missing');" />
-        <h3>Sou grata</h3>
+        <h3>Gratidão</h3>
         <p class="preco">R$35</p>
         <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
         <button class="add-cart botao">Adicionar ao carrinho</button>
       </div>
 
-      <div class="produto" data-id="livrai-me-de-todo-mal" data-name="Livrai-me de todo mal" data-price="35">
-        <img src="imagens/livrai-me-de-todo-mal.jpeg" alt="Livrai-me de todo mal"
+      <div class="produto" data-id="libelula-preta" data-name="Libélula preta" data-price="35">
+        <img src="imagens/libelula-preta.jpeg" alt="Libélula preta"
              onerror="this.src='imagens/placeholder.png'; this.classList.add('img-missing');" />
-        <h3>Livrai-me de todo mal</h3>
+        <h3>Libélula preta</h3>
         <p class="preco">R$35</p>
         <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
         <button class="add-cart botao">Adicionar ao carrinho</button>
       </div>
 
-      <div class="produto" data-id="coroa-laranja" data-name="Coroa laranja" data-price="35">
-        <img src="imagens/coroa-laranja.jpeg" alt="Coroa laranja"
+      <div class="produto" data-id="nao-temerei-mal-algum" data-name="Não temerei mal algum" data-price="35">
+        <img src="imagens/nao-temerei-mal-algum-porque-estas-comigo.jpeg" alt="Não temerei mal algum"
              onerror="this.src='imagens/placeholder.png'; this.classList.add('img-missing');" />
-        <h3>Coroa laranja</h3>
+        <h3>Não temerei mal algum</h3>
         <p class="preco">R$35</p>
         <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
         <button class="add-cart botao">Adicionar ao carrinho</button>
       </div>
 
-      <div class="produto" data-id="coroa-cinza" data-name="Coroa cinza" data-price="35">
-        <img src="imagens/coroa-cinza.jpeg" alt="Coroa cinza"
+      <div class="produto" data-id="protegida-por-deus" data-name="Protegida por Deus" data-price="35">
+        <img src="imagens/protegida-por-deus.jpeg" alt="Protegida por Deus"
              onerror="this.src='imagens/placeholder.png'; this.classList.add('img-missing');" />
-        <h3>Coroa cinza</h3>
+        <h3>Protegida por Deus</h3>
         <p class="preco">R$35</p>
         <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
         <button class="add-cart botao">Adicionar ao carrinho</button>
       </div>
-
-      <div class="produto" data-id="coroa-branca" data-name="Coroa branca" data-price="35">
-        <img src="imagens/coroa-branca.jpeg" alt="Coroa branca"
-             onerror="this.src='imagens/placeholder.png'; this.classList.add('img-missing');" />
-        <h3>Coroa branca</h3>
-        <p class="preco">R$35</p>
-        <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
-        <button class="add-cart botao">Adicionar ao carrinho</button>
-      </div>
-
-      <div class="produto" data-id="coroa-preta" data-name="Coroa preta" data-price="35">
-        <img src="imagens/coroa-preta.jpeg" alt="Coroa preta"
-             onerror="this.src='imagens/placeholder.png'; this.classList.add('img-missing');" />
-        <h3>Coroa preta</h3>
-        <p class="preco">R$35</p>
-        <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
-        <button class="add-cart botao">Adicionar ao carrinho</button>
-      </div>
-
     </div>
   </section>
 
@@ -109,16 +91,5 @@
 
   <script src="js/cart.js"></script>
   <script src="js/ui.js"></script>
-
-  <script>
-    // Atualiza badge do carrinho
-    document.addEventListener('DOMContentLoaded', () => {
-      if (typeof getCartItems === 'function') {
-        const items = getCartItems();
-        const qty = items.reduce((s, it) => s + (it.qty || 1), 0);
-        document.getElementById('cart-badge').textContent = qty;
-      }
-    });
-  </script>
 </body>
 </html>
