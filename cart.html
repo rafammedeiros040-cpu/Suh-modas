@@ -21,8 +21,10 @@
 
   <footer>
     <p>WhatsApp: (11) 97610-9159</p>
+    <p>© 2026 SUH Modas • Rafael Marques Medeiros</p>
   </footer>
 
+  <!-- Script do carrinho -->
   <script src="js/cart.js"></script>
   <script>
     function renderCart() {
@@ -41,7 +43,7 @@
         const div = document.createElement('div');
         div.className = 'cart-item';
         div.innerHTML = `
-          <p>${it.name} (${it.size}) - R$${it.price} x ${it.qty}</p>
+          <p>${it.name} ${it.size ? '(' + it.size + ')' : ''} - R$${it.price} x ${it.qty}</p>
           <button onclick="removeFromCart('${it.id}'); renderCart();">Remover</button>
         `;
         container.appendChild(div);
