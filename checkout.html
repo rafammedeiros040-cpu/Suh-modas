@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checkout - SUH Modas</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <img src="imagens/logo.png" alt="Logo SUH Modas" class="logo" />
+    <h1>Finalizar Compra</h1>
+    <a class="botao" href="cart.html">Voltar ao carrinho</a>
+  </header>
+
+  <main>
+    <div id="order-summary"></div>
+    <p><strong>Total:</strong> R$ <span id="order-total">0.00</span></p>
+    <form id="checkout-form">
+      <label>CEP <input id="cep" required></label><br>
+      <label>Rua <input id="rua" required></label><br>
+      <label>Número <input id="numero" required></label><br>
+      <label>Cidade <input id="cidade" required></label><br>
+      <label>Estado <input id="uf" required></label><br>
+      <button type="submit" class="botao">Confirmar e Pagar</button>
+    </form>
+  </main>
+
+  <footer><p>WhatsApp: (11) 97610-9159</p></footer>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>
