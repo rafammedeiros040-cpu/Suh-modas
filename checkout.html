@@ -18,7 +18,7 @@
     <p><strong>Total:</strong> R$ <span id="checkout-total">0.00</span></p>
 
     <h2>Dados do Cliente</h2>
-    <form id="checkout-form">
+  <form id="checkout-form">
       <label>Nome: <input type="text" id="nome" required></label><br>
       <label>CEP: <input type="text" id="cep" required></label><br>
       <label>Endereço: <input type="text" id="endereco" required></label><br>
@@ -48,27 +48,22 @@
       const container = document.getElementById('checkout-items');
       container.innerHTML = '';
       let total = 0;
-
-      if (items.length === 0) {
+if (items.length === 0) {
         container.textContent = "Seu carrinho está vazio.";
         document.getElementById('checkout-total').textContent = "0.00";
         return;
       }
-
-      items.forEach(it => {
+ items.forEach(it => {
         const div = document.createElement('div');
         div.className = 'checkout-item';
         div.innerHTML = `${it.name} ${it.size ? '('+it.size+')' : ''} - R$${it.price} x ${it.qty}`;
         container.appendChild(div);
         total += it.price * it.qty;
       });
-
-      document.getElementById('checkout-total').textContent = total.toFixed(2);
+document.getElementById('checkout-total').textContent = total.toFixed(2);
     }
-
-    document.addEventListener('DOMContentLoaded', renderCheckout);
-
-    // Buscar endereço pelo CEP (ViaCEP)
+document.addEventListener('DOMContentLoaded', renderCheckout);
+ // Buscar endereço pelo CEP (ViaCEP)
     document.getElementById('cep').addEventListener('blur', async function() {
       const cep = this.value.replace(/\D/g, '');
       if (cep.length === 8) {
@@ -86,9 +81,7 @@
           alert("Erro ao buscar CEP.");
         }
       }
-    });
-
-    // Confirmar pedido
+    });// Confirmar pedido
     document.getElementById('checkout-form').addEventListener('submit', e => {
       e.preventDefault();
       alert("Pedido confirmado! Entraremos em contato pelo WhatsApp.");
