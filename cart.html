@@ -1,34 +1,57 @@
-// js/cart.js
-const CART_KEY = 'suh_cart_v1';
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Carrinho - SUH Modas</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Seu Carrinho</h1>
+    <a class="botao" href="index.html">Voltar ao catálogo</a>
+    <a class="botao" href="checkout.html">Finalizar compra</a>
+  </header>
 
-function loadCart() {
-  try { return JSON.parse(localStorage.getItem(CART_KEY) || '{}'); }
-  catch (e) { return {}; }
-}
+  <main>
+    <div id="cart-container"></div>
+    <p><strong>Total:</strong> R$ <span id="cart-total">0.00</span></p>
+    <button class="botao" onclick="clearCart(); renderCart();">Limpar carrinho</button>
+  </main>
 
-function saveCart(cart) {
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
-}
+  <footer>
+    <p>WhatsApp: (11) 97610-9159</p>
+  </footer>
 
-function addToCart(item) {
-  const cart = loadCart();
-  const key = item.id + (item.size ? '-' + item.size : '');
-  if (cart[key]) cart[key].qty += item.qty || 1;
-  else cart[key] = { id: key, baseId: item.id, name: item.name, price: Number(item.price), size: item.size || '', qty: item.qty || 1 };
-  saveCart(cart);
-}
+  <script src="js/cart.js"></script>
+  <script>
+    function renderCart() {
+      const items = getCartItems();
+      const container = document.getElementById('cart-container');
+      container.innerHTML = '';
+      let total = 0;
 
-function removeFromCart(key) {
-  const cart = loadCart();
-  delete cart[key];
-  saveCart(cart);
-}
+      if (items.length === 0) {
+        container.textContent = "Seu carrinho está vazio.";
+        document.getElementById('cart-total').textContent = "0.00";
+        return;
+      }
 
-function clearCart() {
-  localStorage.removeItem(CART_KEY);
-}
+      items.forEach(it => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <p>${it.name} (${it.size}) - R$${it.price} x ${it.qty}</p>
+          <button onclick="removeFromCart('${it.id}'); renderCart();">Remover</button>
+        `;
+        container.appendChild(div);
+        total += it.price * it.qty;
+      });
 
-function getCartItems() {
-  const cart = loadCart();
-  return Object.values(cart);
-}
+      document.getElementById('cart-total').textContent = total.toFixed(2);
+    }
+
+    document.addEventListener('DOMContentLoaded', renderCart);
+  </script>
+</body>
+</html>
