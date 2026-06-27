@@ -8,26 +8,68 @@
 </head>
 <body>
   <header>
-    <img src="imagens/logo.png" alt="Logo SUH Modas" class="logo" />
     <h1>Finalizar Compra</h1>
     <a class="botao" href="cart.html">Voltar ao carrinho</a>
   </header>
 
   <main>
-    <div id="order-summary"></div>
-    <p><strong>Total:</strong> R$ <span id="order-total">0.00</span></p>
+    <h2>Resumo do Pedido</h2>
+    <div id="checkout-items"></div>
+    <p><strong>Total:</strong> R$ <span id="checkout-total">0.00</span></p>
+
+    <h2>Dados do Cliente</h2>
     <form id="checkout-form">
-      <label>CEP <input id="cep" required></label><br>
-      <label>Rua <input id="rua" required></label><br>
-      <label>Número <input id="numero" required></label><br>
-      <label>Cidade <input id="cidade" required></label><br>
-      <label>Estado <input id="uf" required></label><br>
-      <button type="submit" class="botao">Confirmar e Pagar</button>
+      <label>Nome: <input type="text" id="nome" required></label><br>
+      <label>CEP: <input type="text" id="cep" required></label><br>
+      <label>Endereço: <input type="text" id="endereco" required></label><br>
+      <label>Forma de pagamento:
+        <select id="pagamento">
+          <option>Pix</option>
+          <option>Cartão</option>
+          <option>Boleto</option>
+        </select>
+      </label><br>
+      <button type="submit" class="botao">Confirmar Pedido</button>
     </form>
   </main>
 
-  <footer><p>WhatsApp: (11) 97610-9159</p></footer>
+  <footer>
+    <p>WhatsApp: (11) 97610-9159</p>
+  </footer>
+
   <script src="js/cart.js"></script>
-  <script src="js/checkout.js"></script>
+  <script>
+    function renderCheckout() {
+      const items = getCartItems();
+      const container = document.getElementById('checkout-items');
+      container.innerHTML = '';
+      let total = 0;
+
+      if (items.length === 0) {
+        container.textContent = "Seu carrinho está vazio.";
+        document.getElementById('checkout-total').textContent = "0.00";
+        return;
+      }
+
+      items.forEach(it => {
+        const div = document.createElement('div');
+        div.className = 'checkout-item';
+        div.innerHTML = `${it.name} ${it.size ? '('+it.size+')' : ''} - R$${it.price} x ${it.qty}`;
+        container.appendChild(div);
+        total += it.price * it.qty;
+      });
+
+      document.getElementById('checkout-total').textContent = total.toFixed(2);
+    }
+
+    document.addEventListener('DOMContentLoaded', renderCheckout);
+
+    document.getElementById('checkout-form').addEventListener('submit', e => {
+      e.preventDefault();
+      alert("Pedido confirmado! Entraremos em contato pelo WhatsApp.");
+      clearCart();
+      window.location.href = "index.html";
+    });
+  </script>
 </body>
 </html>
