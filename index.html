@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SUH Modas</title>
-  <link rel="icon" type="image/png" href="imagens/favicon.png" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -15,16 +14,51 @@
     <a class="botao" href="cart.html" id="cart-link">Carrinho (<span id="cart-badge">0</span>)</a>
     <a class="botao" href="https://wa.me/5511976109159" target="_blank" rel="noopener">Faça seu pedido no WhatsApp</a>
   </header>
+
   <section class="catalogo">
     <h2>Catálogo de Camisas</h2>
     <div class="grid">
-      <!-- Adicione seus produtos aqui -->
+      <!-- Produto 1 -->
+      <div class="produto" data-id="abencoada-amarela" data-name="Abençoada amarela" data-price="35">
+        <img src="imagens/abencoada-amarela.jpeg" alt="Abençoada amarela" />
+        <h3>Abençoada amarela</h3>
+        <p class="preco">R$35</p>
+        <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
+        <button class="add-cart botao">Adicionar ao carrinho</button>
+      </div>
+
+      <!-- Produto 2 -->
+      <div class="produto" data-id="em-tudo-gracas" data-name="Em tudo dai graças" data-price="35">
+        <img src="imagens/em-tudo-gracas.jpeg" alt="Em tudo dai graças" />
+        <h3>Em tudo dai graças</h3>
+        <p class="preco">R$35</p>
+        <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
+        <button class="add-cart botao">Adicionar ao carrinho</button>
+      </div>
+
+      <!-- Produto 3 -->
+      <div class="produto" data-id="sou-grata" data-name="Sou grata" data-price="35">
+        <img src="imagens/sou-grata.jpeg" alt="Sou grata" />
+        <h3>Sou grata</h3>
+        <p class="preco">R$35</p>
+        <select class="tamanho"><option>P</option><option>M</option><option>G</option><option>GG</option></select>
+        <button class="add-cart botao">Adicionar ao carrinho</button>
+      </div>
     </div>
   </section>
+
+  <aside class="promocao">
+    <h2>Promoção Especial</h2>
+    <p>Cada camisa por <strong>R$35</strong></p>
+    <p>Leve 3 por <strong>R$90</strong></p>
+    <p><em>Oferta Limitada</em></p>
+  </aside>
+
   <footer>
     <p>WhatsApp: (11) 97610-9159</p>
-    <p>© 2026 SUH Modas\ Rafael Marques Medeiros</p>
+    <p>© 2026 SUH Modas • Rafael Marques Medeiros</p>
   </footer>
+
   <script src="js/cart.js"></script>
   <script src="js/ui.js"></script>
 </body>
